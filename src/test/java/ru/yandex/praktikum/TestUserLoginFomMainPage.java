@@ -13,20 +13,18 @@ public class TestUserLoginFomMainPage {
     @Before
     public void startUp() {
         WebDriverManager.chromedriver().setup();
-        Selenide.open("https://stellarburgers.nomoreparties.site/");
+        Selenide.open(Configuration.testSiteMainPage);
     }
-
     // для запуска тестов в ЯндексБраузере (скачала яндекс драйвер для работы с селенидом, сделалала файл испоняемым)
 //    @Before
 //    public void startUp() {
 //        System.setProperty("webdriver.chrome.driver", "/Users/Olga/github/OlgaGurkina/Diplom_3/yandexdriver");
-//        Selenide.open("https://stellarburgers.nomoreparties.site/");
+//        Selenide.open(Configuration.testSiteMainPage);
 //    }
-
 
     @Test
     @DisplayName("check user can login from main page")
-    public void checkLoginFromMainPage(){
+    public void checkLoginFromMainPage() {
         MainPage mainPage = new MainPage();
         LoginPage loginPage = mainPage.tryLoginFormMainPage();
         loginPage.enterEmail(Configuration.testUserEmail);
@@ -34,9 +32,7 @@ public class TestUserLoginFomMainPage {
         MainPage loggedUserMainPage = loginPage.pressLoginButton();
         loggedUserMainPage.checkUserIsLoggedIn();
         loggedUserMainPage.enterPersonalAccount().logout();
-
     }
-
 
     @After
     public void after() {

@@ -13,32 +13,29 @@ public class TestUserLoginFromForgetPassPage {
     @Before
     public void startUp() {
         WebDriverManager.chromedriver().setup();
-        Selenide.open("https://stellarburgers.nomoreparties.site/forgot-password");
+        Selenide.open(Configuration.testSiteForgetPassPage);
     }
-
     // для запуска тестов в ЯндексБраузере (скачала яндекс драйвер для работы с селенидом, сделалала файл испоняемым)
 //    @Before
 //    public void startUp() {
 //        System.setProperty("webdriver.chrome.driver", "/Users/Olga/github/OlgaGurkina/Diplom_3/yandexdriver");
-//        Selenide.open("https://stellarburgers.nomoreparties.site/forgot-password");
+//        Selenide.open(Configuration.testSiteForgetPassPage);
 //    }
 
     @Test
     @DisplayName("check user can login from PassRecoveryPage")
-    public void checkLoginFromPassRecoveryPage(){
+    public void checkLoginFromPassRecoveryPage() {
         ForgotPasswordPage forgotPasswordPage = new ForgotPasswordPage();
-        LoginPage loginPage =  forgotPasswordPage.pressLoginFromForgerPassPage();
+        LoginPage loginPage = forgotPasswordPage.pressLoginFromForgerPassPage();
         loginPage.enterEmail(Configuration.testUserEmail);
         loginPage.enterPassword(Configuration.testUserPass);
         MainPage loggedUserMainPage = loginPage.pressLoginButton();
         loggedUserMainPage.checkUserIsLoggedIn();
         loggedUserMainPage.enterPersonalAccount().logout();
-
     }
 
     @After
     public void after() {
         Selenide.closeWebDriver();
     }
-
 }

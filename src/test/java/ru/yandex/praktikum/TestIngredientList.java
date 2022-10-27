@@ -12,24 +12,21 @@ public class TestIngredientList {
     @Before
     public void startUp() {
         WebDriverManager.chromedriver().setup();
-        Selenide.open("https://stellarburgers.nomoreparties.site");
+        Selenide.open(Configuration.testSiteMainPage);
     }
-
     // для запуска тестов в ЯндексБраузере (скачала яндекс драйвер для работы с селенидом, сделалала файл испоняемым)
 //    @Before
 //    public void startUp() {
 //        System.setProperty("webdriver.chrome.driver", "/Users/Olga/github/OlgaGurkina/Diplom_3/yandexdriver");
-//        Selenide.open("https://stellarburgers.nomoreparties.site");
+//        Selenide.open("Configuration.testSiteMainPage");
 //    }
 
     @Test
     @DisplayName("check user can change IngredientsList by clicking different tabs")
-    public void checkIngredientsList(){
-       MainPage mainPage = new MainPage();
+    public void checkIngredientsList() {
+        MainPage mainPage = new MainPage();
         mainPage.checkIngredientsList();
     }
-
-
 
     @After
     public void after() {
